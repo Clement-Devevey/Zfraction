@@ -1,0 +1,29 @@
+# Variables to control Makefile operation
+ 
+CC = /usr/bin/g++
+CFLAGS = -Wall -g
+main = main
+func1 = Zfraction
+#func2 = Arme
+
+# ****************************************************
+all: $(main)
+
+$(main): fichiers_objets/$(main).o fichiers_objets/$(func1).o
+	$(CC) $(CFLAGS) -o $(main) fichiers_objets/$(main).o fichiers_objets/$(func1).o
+ 
+fichiers_objets/$(main).o: $(main).cpp
+	$(CC) $(CFLAGS) -c $(main).cpp
+	mv $(main).o fichiers_objets/
+
+fichiers_objets/$(func1).o: $(func1).cpp
+	$(CC) $(CFLAGS) -c $(func1).cpp
+	mv $(func1).o fichiers_objets/
+
+#fichiers_objets/$(func2).o: $(func2).cpp
+#	$(CC) $(CFLAGS) -c $(func2).cpp
+#	mv $(func2).o fichiers_objets/
+
+
+clean:
+	$(RM) $(main)
